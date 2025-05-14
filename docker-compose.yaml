@@ -18,6 +18,12 @@ services:
       - type: volume
         source: MONGO_CONFIG
         target: /data/configdb
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraint:
+          - node.hostname == docker01
   mongo-express:
     image: mongo-express:latest
     container_name: mongo-express
